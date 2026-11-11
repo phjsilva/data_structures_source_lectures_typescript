@@ -1,15 +1,16 @@
 import {Graph } from './dijkstra_search'
 
 let graph_data: any = {};
-graph_data['a'] = {b:5, c:2}
-graph_data['b'] = {d:4, e:2}
-graph_data['c'] = {b:8, e:7}
-graph_data['d'] = {f:3, e:6}
-graph_data['e'] = {f:1}
-graph_data['f'] = {}
+graph_data['Cidade 1'] = {'Cidade 2':3, 'Cidade 3':7, 'Cidade 5':1}
+graph_data['Cidade 2'] = {'Cidade 1':3, 'Cidade 3':0.5, 'Cidade 4':9}
+graph_data['Cidade 3'] = {'Cidade 1':7, 'Cidade 2':0.5}
+graph_data['Cidade 4'] = {'Cidade 2':9}
+graph_data['Cidade 5'] = {'Cidade 1':1}
+
+console.log(JSON.stringify(graph_data, null, 2));
 
 let my_graph = new Graph(graph_data);
-let path = my_graph.dijkstra_searh('a','f');
+let path = my_graph.dijkstra_searh('Cidade 1','Cidade 3').reverse();
 console.log(path);
 console.log(my_graph.costs);
 console.log(my_graph.parents);

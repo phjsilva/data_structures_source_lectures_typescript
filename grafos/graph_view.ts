@@ -5,28 +5,33 @@
 
 import { Graph } from "./graph";
 
-let g = new Graph(['sjc', 'jac', 'sti', 'mlo', 'tbt']);
+let g = new Graph(['Cidade 1', 'Cidade 2', 'Cidade 3', 'Cidade 4', 'Cidade 5']);
 
 /*
-santa isabel - jacareí (35km)
-jacareí - sjc (15km)
-sjc - monteiro lobato (40km)
-sjc - taubaté (43km)
+Cidade 1 - Cidade 2 (3)
+Cidade 1 - Cidade 3 (7)
+Cidade 1 - Cidade 5 (1)
+Cidade 2 - Cidade 3 (0.5)
+Cidade 2 - Cidade 4 (9)
 */
 console.log(g.adj_matrix);
 console.log(g.vertices);
 
 
-g.connect_vertices("jac","sti", 35);
-g.connect_vertices("sjc", "jac", 15);
-g.connect_vertices("sjc", "tbt", 43);
-g.connect_vertices("sjc", "mlo", 40);
+g.connect_vertices("Cidade 1", "Cidade 2", 3);
+g.connect_vertices("Cidade 1", "Cidade 3", 7);
+g.connect_vertices("Cidade 1", "Cidade 5", 1);
+g.connect_vertices("Cidade 2", "Cidade 3", 0.5);
+g.connect_vertices("Cidade 2", "Cidade 4", 9);
 console.log("\n");
 g.print();
 
+let adjacency_list: {[city: string]: {[neighbor: string]: number}} = {};
 g.vertices.forEach((city)=>{
-    console.log("Nodes connected to ", city, " : ", g.get_connected_vertices(city));
+    adjacency_list[city] = g.get_connected_vertices(city);
 });
+console.log("\nLista de adjacência (JSON):");
+console.log(JSON.stringify(adjacency_list, null, 2));
 
 
 
